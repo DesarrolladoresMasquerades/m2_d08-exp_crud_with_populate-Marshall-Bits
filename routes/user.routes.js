@@ -42,6 +42,10 @@ router.get("/users", (req, res) => {
 // GET details of a specific user (primarily their posts)
 // ****************************************************************************************
 
-// ... your code here
+router.get("/users/:id", (res,req)=>{
+  User.findById(req.params.id)
+  .populate("posts")
+  .then(user=>res.render("users/details", user))
+})
 
 module.exports = router;
